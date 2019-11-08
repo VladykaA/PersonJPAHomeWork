@@ -26,6 +26,9 @@ public class Main {
 //       List<Person> list = Service.selectPersonByName("Ray");
 //       list.forEach(System.out::println);
 
+//        List<Person> list = Service.selectPersonByAddress(addressPerson3);
+//       list.forEach(System.out::println);
+
 
 
 

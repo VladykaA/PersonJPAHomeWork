@@ -43,7 +43,6 @@ public class Service {
 
     public static List<Person> selectPersonByName (String name){
         em.getTransaction().begin();
-
         Query query = em.createQuery("SELECT m FROM Person m WHERE m.name = :tempName");
         query.setParameter("tempName", name);
 
@@ -58,25 +57,29 @@ public class Service {
 
     public static List<Person> selectPersonByAge (int age){
         em.getTransaction().begin();
-        TypedQuery<Person> query = em.createQuery("FROM Person m WHERE m.age = :tempAge", Person.class);
+        Query query = em.createQuery("SELECT m FROM Person m WHERE m.age = :tempAge");
         query.setParameter("tempAge", age);
 
+        @SuppressWarnings("unchecked")
+        List<Person> list = (List<Person>)query.getResultList();
         em.getTransaction().commit();
         em.close();
         emf.close();
 
-        return query.getResultList();
+        return list;
     }
 
     public static List<Person> selectPersonByAddress (Address address){
         em.getTransaction().begin();
-        TypedQuery<Person> query = em.createQuery("FROM Person m WHERE m.address = :tempAddress", Person.class);
+        Query query = em.createQuery("SELECT m FROM Person m WHERE m.address = :tempAddress");
         query.setParameter("tempAddress", address);
 
+        @SuppressWarnings("unchecked")
+        List<Person> list = (List<Person>)query.getResultList();
         em.getTransaction().commit();
         em.close();
         emf.close();
 
-        return query.getResultList();
+        return list;
     }
 }
